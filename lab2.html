@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<script type="text/javascript">
+     //    let callbacks = function (value){
+     //        console.log(value);
+     //    };
+     //
+     // let getValue = function (callback) {
+     //     let value = 0;
+     //     setTimeout(function () {
+     //         value = 10;
+     //         callback(value);
+     //
+     //     },2000);
+     // return value;
+     // };
+     //
+     // console.log(getValue(callbacks));
+
+     // //que2
+     //    let  getValue = function () {
+     //        let value= 0;
+     //        return new Promise(function (resolve) {
+     //            //set time function execute after 2 sec
+     //            //promise works something like may be cn happen may be dont happen
+     //            setTimeout(function () {
+     //                value = 10;
+     //                resolve(value);
+     //
+     //            }, 2000);
+     //        })
+     //
+     //
+     //    };
+     //    getValue().then(function (value) {
+    // console.log(value);
+     //   return value+100;
+     //
+     //
+     //
+     //    }).then(function(value){
+     //       console.log(value);
+     //    }).then(function(value){
+     //    value = value +100;
+     //console.log(value);
+     //    })
+
+     //    console.log("this type after);
+     // advantage of promise
+     //que 3
+     //• Create a class named Vehicle using a function.
+     function Vehicle(type) {
+         //a
+         this.type = type;
+         //when create a object from this class it will execute one time;
+         //Increase the number of VehicleCount (Vehicle.VehicleCount++) by one inside the
+         // constructor
+         //check how many object s we have creted from the class
+         Vehicle.VehicleCount++;
+     }
+     //Add a property named type to the class (this.type). Assign a value to that variable
+     //using a
+     //constructor argument
+//      Add a function to its prototype named drive (Vehicle.prototype.print...). Print
+// ‘Vehicle is
+//      driving’ in the function body.
+     Vehicle.prototype.print = function () {
+         //call this to access the properties in the class
+         console.log(this.type + " Vehicle is driving");
+     };
+     //Add VehicleCount (Vehicle.VehicleCount) as a static variable
+     Vehicle.VehicleCount = 0;
+     let vehicle = new Vehicle("Susuki");
+     //console.log(Vehicle.VehicleCount);
+     vehicle.print();
+     //Create a class named Car and extend the class Vehicle (Car.prototype =
+    // Object.create(Vehicle.prototype); Car.prototype.constructor = Car).
+     //pass the context of this class to the vehicle class
+
+     function Car(type){
+         Vehicle.call(this,type);
+     }
+     Car.prototype = Object.create(Vehicle.prototype);
+     Car.prototype.constructor = Car;
+     Car.prototype.balanceWheels = function () {
+         console.log("Wheels are balanced");
+     }
+     const car = new Car("Toyota");
+     car.print();
+     car.balanceWheels();
+     console.log(car.type, Vehicle.VehicleCount);
+
+
+
+
+     // function Vehicle(type) {
+     //     this.type = type;
+     //     Vehicle.VehicleCount++;
+     // }
+     // Vehicle.VehicleCount = 0;
+     // console.log(Vehicle.VehicleCount);
+     // const vehicle = new Vehicle("Toyota");
+     // console.log(vehicle.type);
+     // console.log(Vehicle.VehicleCount);
+     // Vehicle.prototype.drive = function () {
+     //     console.log( this.type + " is driving");
+     // };
+     // function Car(type) {
+     //     Vehicle.call(this,type);
+     // }
+     // Car.prototype = Object.create(Vehicle.prototype);
+     // Car.prototype.constructor = Car;
+     // Car.prototype.balanceWheels = function () {
+     //     console.log("Wheels are balanced");
+     // };
+     // const car = new Car("Honda");
+     // vehicle.drive();
+     // car.drive();
+     // car.balanceWheels();
+     // console.log(Vehicle.VehicleCount);
+     // console.log(car.type);
+
+     //3
+     //dont have the keyword
+     //
+     let displayName = function () {
+         console.log("Hello" + name);
+
+     }
+     displayName("SLIIT");
+
+     let printName = () =>{
+         console.log("Hello arrow function");
+     };
+
+
+     //example
+
+     let person = {
+         name:"jane",
+         Age:22,
+         printName(){
+             console.log("Regular function: "+this.name);
+         },
+         //arrow function you dont have access to internal property.
+         //it is not in the function scope
+         displayName:()=>{
+             console.log("Arrow function : "+this.name)
+         },
+         parent:{
+             name:"Carrol",
+             printName:()=>{
+                 console.log(this.name);
+             }
+         }
+     };
+     person.printName();
+     person.displayName();
+
+     //4
+      function getValue(){
+         let value = 0;
+         return new Promise(function (resolve,reject) {
+             setTimeout(function () {
+                 value = 10;
+                 resolve(value);
+
+             },2000);
+         })
+     }
+
+     async  function  print() {
+          let value = await getValue();
+          console.log(value);
+          console.log("some text");
+
+     }
+     print();
+
+     getValue().then(function (value) {
+         console.log(value);
+
+     });
+     console.log("Something");
+
+     //5
+     function Vehicle(type) {
+         this.type = type;
+         Vehicle.Count++;
+
+
+     }
+     Vehicle.prototype.drive = function(){
+         console.log(this.type+"Driving");
+     }
+     Vehicle.Count = 0;
+     vehicle = new Vehicle("Toyota");
+     vehicle.drive();
+     console.log(Vehicle.Count());
+
+     // function Car(type){
+     //     Vehicle.call(this,type);
+     // }
+     // Car.prototype =Object.create(Vehicle.prototype);
+     // Car.prototype.constructor = Car;
+     //
+     // Car.prototype.wheelBalance = function(){
+     //     console.log("wheels are balanced");
+     // };
+     // let car = new Car("Nissan");
+     // car.wheelBalance();
+     // car.drive();
+     // console.log(Vehicle.count);
+
+     //5
+     //vehicle class
+     // class Vehicle{
+     //     static vehicleCount
+     //     constructor(type){
+     //         this.type = type
+     //     }
+     //     drive(){
+     //         console.log(this.type + " is driving");
+     //     }
+     // }
+     // let vehicle = new Vehicle("Toyota");
+     // vehicle.drive();
+     // console.log(Vehicle.VehicleCount);
+     //
+     // class Car extends Vehicle{
+     //     constructor(type){
+     //         super(type);
+     //     }
+     //     wheelBalance(){
+     //         console.log("wheel ARE balance in " +this.type);
+     //     }
+     // }
+     //
+     // let car = new Car("Nissan");
+     // car.drive();
+     // car.wheelBalance();
+     // console.log(Vehicle.VehicleCount);
+
+     //getters and setters
+     class Square{
+         constructor(width){
+             this.width = width;
+             this.height = width;
+         }
+         //area acting as a property
+         get area(){
+             return this.height * this.width;
+         }
+
+         //set function
+         set area(area){
+             this.width = Math.sqrt(area);
+             this.height = Math.sqrt(area);
+         }
+
+     }
+     let square1 = new Square(5);
+//area act as property
+     console.log(square1.area);
+     console.log(square1.width);
+     square1.area = 64;
+     console.log(square1.width);
+
+
+
+
+
+
+</script>
+
+</body>
+</html>
